@@ -29,7 +29,7 @@ export default function Reports() {
       const categoryMap = new Map();
       transactions.forEach((t) => {
         const current = categoryMap.get(t.category) || 0;
-        categoryMap.set(t.category, current + parseFloat(t.amount));
+        categoryMap.set(t.category, current + Number(t.amount));
       });
 
       const catData = Array.from(categoryMap.entries()).map(([name, value]) => ({
@@ -44,9 +44,9 @@ export default function Reports() {
         const month = new Date(t.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
         const current = monthlyMap.get(month) || { income: 0, expense: 0 };
         if (t.type === 'income') {
-          current.income += parseFloat(t.amount);
+          current.income += Number(t.amount);
         } else {
-          current.expense += parseFloat(t.amount);
+          current.expense += Number(t.amount);
         }
         monthlyMap.set(month, current);
       });
