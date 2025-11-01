@@ -1,11 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 210 20% 98%;
@@ -39,25 +34,19 @@ All colors MUST be HSL.
     --ring: 214 95% 55%;
 
     --radius: 0.75rem;
-    
+
     --success: 152 65% 52%;
     --warning: 38 92% 50%;
     --info: 214 95% 55%;
 
+    /* Sidebar */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -91,10 +80,12 @@ All colors MUST be HSL.
     --border: 215 25% 20%;
     --input: 215 25% 20%;
     --ring: 214 95% 55%;
-    
+
     --success: 152 65% 52%;
     --warning: 38 92% 50%;
     --info: 214 95% 55%;
+
+    /* Sidebar */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -108,10 +99,52 @@ All colors MUST be HSL.
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-500;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--muted)) 100%
+    );
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* Card styling */
+  .card {
+    @apply rounded-xl bg-card shadow-md hover:shadow-lg hover:scale-[1.01] transition-all;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg font-medium text-white bg-primary hover:bg-primary-hover transition-all;
+  }
+
+  /* Fancy gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)),
+      hsl(var(--accent)),
+      hsl(var(--secondary))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hueRotate 6s linear infinite;
+  }
+
+  @keyframes hueRotate {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
   }
 }
