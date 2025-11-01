@@ -18,7 +18,7 @@ serve(async (req) => {
       throw new Error('LOVABLE_API_KEY is not configured');
     }
 
-    const systemPrompt = type === 'wellness' 
+    const systemPrompt = type === 'wellness'
       ? "You are a supportive wellness coach helping users with financial stress and well-being. Provide empathetic, actionable advice."
       : "You are a financial assistant helping users manage their budget and finances. Provide clear, practical financial advice.";
 
@@ -38,11 +38,20 @@ serve(async (req) => {
     });
 
     const data = await response.json();
-    const aiResponse = data.choices[0].message.content;
+    let aiResponse = data.choices?.[0]?.message?.content || "No response received.";
+
+    // 🧹 Clean response formatting
+    aiResponse = aiResponse
+      .replace(/\*\*/g, '')                     // remove bold markers
+      .replace(/\*/g, '•')                      // turn * bullets into dot bullets
+      .replace(/\n\s*\n/g, '\n\n')              // normalize blank lines
+      .replace(/\s{2,}/g, ' ')                  // collapse extra spaces
+      .trim();
 
     return new Response(JSON.stringify({ response: aiResponse }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
+
   } catch (error) {
     console.error('Error:', error);
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
