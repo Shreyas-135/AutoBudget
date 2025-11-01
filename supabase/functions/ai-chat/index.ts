@@ -40,12 +40,14 @@ serve(async (req) => {
     const data = await response.json();
     let aiResponse = data.choices?.[0]?.message?.content || "No response received.";
 
-    // 🧹 Clean response formatting
+    // 🧹 Enhanced Markdown cleaner and line formatter
     aiResponse = aiResponse
-      .replace(/\*\*/g, '')                     // remove bold markers
-      .replace(/\*/g, '•')                      // turn * bullets into dot bullets
-      .replace(/\n\s*\n/g, '\n\n')              // normalize blank lines
-      .replace(/\s{2,}/g, ' ')                  // collapse extra spaces
+      .replace(/\*\*\s*/g, '')                            // remove all bold markers
+      .replace(/(\*\s*)+/g, '\n• ')                       // turn * bullet chains into new lines with dot bullets
+      .replace(/\n{2,}/g, '\n')                           // collapse multiple newlines
+      .replace(/([.?!])\s*(?=•)/g, '$1\n')                // ensure each bullet starts on a new line
+      .replace(/\s{2,}/g, ' ')                            // collapse extra spaces
+      .replace(/^\s*•/gm, match => '\n' + match.trim())   // ensure bullets start on new lines
       .trim();
 
     return new Response(JSON.stringify({ response: aiResponse }), {
