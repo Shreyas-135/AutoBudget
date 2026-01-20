@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Wallet, CreditCard, BarChart3, Bot, Heart, TrendingUp, Calculator, LogOut } from "lucide-react";
+import { Home, Wallet, CreditCard, BarChart3, Bot, Heart, TrendingUp, Calculator, LogOut, Brain } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ const navigation = [
   { name: "Budgets", href: "/budgets", icon: Wallet },
   { name: "Transactions", href: "/transactions", icon: CreditCard },
   { name: "Reports", href: "/reports", icon: BarChart3 },
+  { name: "Predictive Analytics", href: "/predictive-analytics", icon: Brain },
   { name: "Stock Advisor", href: "/stocks", icon: TrendingUp },
   { name: "Tax Estimate", href: "/tax-estimate", icon: Calculator },
   { name: "AI Assistant", href: "/ai-assistant", icon: Bot },
