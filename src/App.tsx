@@ -13,6 +13,7 @@ import StockAdvisor from "./pages/StockAdvisor";
 import TaxEstimate from "./pages/TaxEstimate";
 import AIAssistant from "./pages/AIAssistant";
 import Wellness from "./pages/Wellness";
+import PredictiveAnalytics from "./pages/PredictiveAnalytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -65,6 +66,7 @@ const App = () => {
               <Route path="/tax-estimate" element={<TaxEstimate />} />
               <Route path="/ai-assistant" element={<AIAssistant />} />
               <Route path="/wellness" element={<Wellness />} />
+              <Route path="/predictive-analytics" element={<PredictiveAnalytics />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
