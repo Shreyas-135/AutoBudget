@@ -28,6 +28,40 @@ A modern, responsive digital wallet application built with **React (Vite + TypeS
 
 ---
 
+## ⚙️ Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Shreyas-135/AutoBudget.git
+   cd AutoBudget
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   - Copy `.env.example` to `.env`
+   - Fill in your Supabase credentials:
+     ```
+     VITE_SUPABASE_PROJECT_ID=your_project_id_here
+     VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key_here
+     VITE_SUPABASE_URL=your_supabase_url_here
+     ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+---
+
 ## 🧩 Project Structure
 
 ```text
@@ -54,7 +88,7 @@ gemini-wise-wallet/
 │   ├── migrations/       # Database migrations
 │   └── config.toml
 │
-├── .env                  # Environment variables
+├── .env.example          # Environment variables template
 ├── .gitignore
 ├── components.json
 ├── eslint.config.js
